@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="zh-CN"><head><script src="../.mirror/sanitizer.js" data-mirror-runtime=""></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  
+  <title>实时 2FA 验证码</title>
+  <link rel="stylesheet" href="./styles.css?v=1.0.0">
+  <script type="module" src="./app.js?v=1.0.0"></script>
+<style data-mirror-route-style="">
+  .tutorial-sidebar{position:fixed;left:max(16px,calc((100vw - 920px) / 2 - 244px));top:50%;z-index:900;width:210px;max-height:calc(100vh - 32px);overflow:auto;transform:translateY(-50%);padding:14px;border:1px solid rgba(219,226,236,.95);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 16px 38px rgba(31,43,68,.14);backdrop-filter:blur(12px)}
+  .tutorial-sidebar-title{margin:0 2px 10px;color:#172033;font-size:14px;font-weight:800;line-height:1.35}
+  .tutorial-sidebar-list{display:grid;gap:7px}
+  .tutorial-sidebar-link{display:block;padding:9px 10px;border:1px solid transparent;border-radius:10px;color:#475569;font-size:13px;line-height:1.4;text-decoration:none;transition:background .16s ease,border-color .16s ease,color .16s ease}
+  .tutorial-sidebar-link:hover{border-color:#c7c3ff;background:#f3f2ff;color:#4338ca}
+  .tutorial-sidebar-link.active{border-color:#c7c3ff;background:#eceaff;color:#4338ca;font-weight:800}
+  @media(min-width:1180px){body[data-mirror-route-nav-page] main.wrap{width:min(920px,calc(100% - 278px));margin-left:max(253px,calc((100vw - 920px) / 2));margin-right:16px}body[data-mirror-route-nav-page] main.page-shell{width:min(1120px,calc(100% - 278px));margin-left:max(255px,calc((100vw - 1120px) / 2 + 95px));margin-right:18px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:238px}}
+  @media(max-width:1179px) and (min-width:901px){.tutorial-sidebar{left:12px;width:180px}.wrap{width:calc(100% - 220px);margin-left:204px;margin-right:16px}}
+  @media(max-width:1179px) and (min-width:901px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 220px);margin-left:204px;margin-right:16px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:204px}}
+  @media(max-width:900px){.tutorial-sidebar{position:static;width:auto;max-height:none;margin:10px 11px 0;transform:none}.tutorial-sidebar-list{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{width:min(920px,100%);margin:auto}body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 36px);margin:0 auto}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:0}}
+  @media(max-width:640px){.tutorial-sidebar{margin:8px 11px 0;padding:11px;border-radius:14px}.tutorial-sidebar-list{grid-template-columns:1fr}.tutorial-sidebar-link{padding:8px 9px}.wrap{padding-top:4px}}
+  @media(max-width:540px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 22px)}}
+</style></head>
+<body data-mirror-route-nav-page=""><aside data-mirror-route-nav="" class="tutorial-sidebar" aria-label="教程导航"><div class="tutorial-sidebar-title">教程导航</div><nav class="tutorial-sidebar-list" aria-label="全部教程"><a class="tutorial-sidebar-link" href="../codex-login/">Codex 桌面版登录教程</a><a class="tutorial-sidebar-link" href="../icloud-login/">2FA格式卡密登录教程</a><a class="tutorial-sidebar-link" href="../icloud-pickup-login/">iCloud 邮箱取件链接登录教程</a><a class="tutorial-sidebar-link" href="../gptplus-password/">GPT Plus 修改密码教程</a><a class="tutorial-sidebar-link" href="../change-2fa/">GPT Plus 更换 2FA 教程</a><a class="tutorial-sidebar-link" href="../change-email/">ChatGPT 更改邮箱教程</a><a class="tutorial-sidebar-link active" href="../2fa/" aria-current="page">实时 2FA 验证码</a><a class="tutorial-sidebar-link" href="../reverse-proxy-tutorial/">Codex 反代与 Cockpit 教程</a></nav></aside>
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <main class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">LOCAL · PRIVATE · REAL-TIME</p>
+        <h1>实时 2FA 验证码</h1>
+        <p class="hero-copy">密钥与验证码仅在当前浏览器计算，不会发送到服务器。</p>
+      </div>
+      <div class="privacy-badge"><span></span> 本地计算</div>
+    </header>
+
+    <section class="workspace" aria-label="2FA 验证码生成器">
+      <article class="panel generator-panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">GENERATOR</p>
+            <h2>生成最新验证码</h2>
+          </div>
+          <button class="text-button" id="clearInputButton" type="button">清空</button>
+        </div>
+
+        <label class="field-label" for="secretInput">2FA 密钥或 otpauth:// 地址</label>
+        <div class="secret-field">
+          <input id="secretInput" type="password" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="粘贴 2fa：后面的 Base32 密钥">
+          <button class="icon-button" id="toggleSecretButton" type="button" aria-label="显示密钥" title="显示或隐藏密钥">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 12s3.5-6 9.6-6 9.6 6 9.6 6-3.5 6-9.6 6-9.6-6-9.6-6Zm9.6 3.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"></path></svg>
+          </button>
+        </div>
+
+        <label class="field-label" for="labelInput">备注（可选）</label>
+        <input id="labelInput" type="text" maxlength="80" autocomplete="off" placeholder="例如：ChatGPT 账号尾号 1024">
+
+        <label class="save-option">
+          <input id="saveHistoryInput" type="checkbox" checked="">
+          <span class="checkmark"></span>
+          <span><strong>保存到浏览器历史</strong><small>下次打开可直接使用；数据只保存在此浏览器</small></span>
+        </label>
+
+        <button class="primary-button" id="generateButton" type="button">
+          <span>生成最新验证码</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+        </button>
+
+        <p class="error-message" id="errorMessage" role="alert" aria-live="polite"></p>
+      </article>
+
+      <article class="panel code-panel" id="codePanel" aria-live="polite">
+        <div class="code-placeholder" id="codePlaceholder">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2m-9 0h8a2 2 0 0 1 2 2v7H6v-7a2 2 0 0 1 2-2Z"></path></svg>
+          </div>
+          <h2>等待输入密钥</h2>
+          <p>支持普通 Base32 密钥和 Authenticator 导出的 otpauth:// 地址。</p>
+        </div>
+
+        <div class="code-result hidden" id="codeResult">
+          <div class="result-topline">
+            <span class="live-dot"><i></i> 当前验证码</span>
+            <span id="accountLabel">未命名账户</span>
+          </div>
+
+          <button class="code-button" id="copyCodeButton" type="button" title="点击复制最新验证码">
+            <span id="codeValue">------</span>
+            <small>点击复制</small>
+          </button>
+
+          <div class="timer-block">
+            <div class="timer-row">
+              <span>有效时间</span>
+              <strong><b id="secondsValue">30</b> 秒</strong>
+            </div>
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+            <p id="timerHint">验证码会按服务器标准时间自动更新</p>
+          </div>
+
+          <div class="result-meta">
+            <span id="algorithmValue">SHA1</span>
+            <span id="digitsValue">6 位</span>
+            <span id="periodValue">30 秒周期</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="section-heading history-heading">
+        <div>
+          <p class="section-kicker">BROWSER HISTORY</p>
+          <h2>浏览器历史记录</h2>
+          <p>保存的是密钥配置，不保存已经过期的六位验证码。</p>
+        </div>
+        <button class="danger-text-button" id="clearHistoryButton" type="button">清空历史</button>
+      </div>
+      <div class="history-list" id="historyList"></div>
+      <div class="empty-history" id="emptyHistory">
+        <span>暂无历史记录</span>
+        <small>勾选“保存到浏览器历史”并生成后，会显示在这里。</small>
+      </div>
+    </section>
+
+    <footer>
+      <span>所有 TOTP 计算均在浏览器 Web Crypto 中完成</span>
+      <span>·</span>
+      <span>不会上传密钥或验证码</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+</body></html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh-CN"><head><script src="../.mirror/sanitizer.js" data-mirror-runtime=""></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>反代教程 - Codex 教程</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, "Segoe UI", "Microsoft YaHei", sans-serif; color: #202225; background: #f6f7f8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f6f7f8; color: #202225; letter-spacing: 0; }
+    .reverse-proxy-tutorial { min-height: 100vh; }
+    .tutorial-heading-band { border-bottom: 1px solid #dedfe2; background: #fff; }
+    .tutorial-heading, .tutorial-detail { width: min(100% - 40px, 980px); margin-inline: auto; }
+    .tutorial-heading { padding: 42px 0 34px; }
+    .tutorial-kicker { margin: 0 0 9px; color: #16766f; font-size: 13px; font-weight: 700; text-transform: uppercase; }
+    h1 { margin: 0; font-size: 40px; line-height: 1.2; letter-spacing: 0; }
+    .tutorial-summary { max-width: 760px; margin: 15px 0 0; color: #5b6068; font-size: 16px; line-height: 1.8; }
+    .tutorial-detail { padding: 36px 0 72px; }
+    .tutorial-detail h2 { margin: 42px 0 14px; padding-top: 18px; border-top: 1px solid #dedfe2; font-size: 22px; line-height: 1.4; letter-spacing: 0; }
+    .tutorial-detail h2:first-child { margin-top: 0; }
+    .tutorial-detail h3 { margin: 28px 0 10px; font-size: 18px; letter-spacing: 0; }
+    .tutorial-detail p, .tutorial-detail li { color: #34373c; font-size: 16px; line-height: 1.9; }
+    .tutorial-detail p { margin: 0 0 18px; }
+    .tutorial-detail a { color: #0969da; overflow-wrap: anywhere; text-underline-offset: 3px; }
+    .tutorial-detail strong { color: #a63128; }
+    .tutorial-detail blockquote { margin: 24px 0; padding: 14px 18px; border-left: 4px solid #16766f; background: #edf7f5; }
+    .tutorial-media { display: grid; width: 100%; margin: 18px 0 30px; gap: 14px; }
+    .tutorial-media-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+    .tutorial-media img { display: block; width: auto; max-width: 100%; max-height: 760px; margin-inline: auto; border: 1px solid #d6d8dc; border-radius: 6px; background: #fff; box-shadow: 0 8px 24px rgb(31 35 40 / 8%); }
+    code, pre { font-family: "Cascadia Code", Consolas, monospace; }
+    @media (max-width: 700px) {
+      .tutorial-heading, .tutorial-detail { width: min(100% - 28px, 980px); }
+      .tutorial-heading { padding: 30px 0 26px; }
+      .tutorial-detail { padding-top: 26px; }
+      h1 { font-size: 30px; }
+      .tutorial-media-grid { grid-template-columns: 1fr; }
+      .tutorial-detail h2 { font-size: 20px; }
+    }
+  </style>
+<style data-mirror-route-style="">
+  .tutorial-sidebar{position:fixed;left:max(16px,calc((100vw - 920px) / 2 - 244px));top:50%;z-index:900;width:210px;max-height:calc(100vh - 32px);overflow:auto;transform:translateY(-50%);padding:14px;border:1px solid rgba(219,226,236,.95);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 16px 38px rgba(31,43,68,.14);backdrop-filter:blur(12px)}
+  .tutorial-sidebar-title{margin:0 2px 10px;color:#172033;font-size:14px;font-weight:800;line-height:1.35}
+  .tutorial-sidebar-list{display:grid;gap:7px}
+  .tutorial-sidebar-link{display:block;padding:9px 10px;border:1px solid transparent;border-radius:10px;color:#475569;font-size:13px;line-height:1.4;text-decoration:none;transition:background .16s ease,border-color .16s ease,color .16s ease}
+  .tutorial-sidebar-link:hover{border-color:#c7c3ff;background:#f3f2ff;color:#4338ca}
+  .tutorial-sidebar-link.active{border-color:#c7c3ff;background:#eceaff;color:#4338ca;font-weight:800}
+  @media(min-width:1180px){body[data-mirror-route-nav-page] main.wrap{width:min(920px,calc(100% - 278px));margin-left:max(253px,calc((100vw - 920px) / 2));margin-right:16px}body[data-mirror-route-nav-page] main.page-shell{width:min(1120px,calc(100% - 278px));margin-left:max(255px,calc((100vw - 1120px) / 2 + 95px));margin-right:18px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:238px}}
+  @media(max-width:1179px) and (min-width:901px){.tutorial-sidebar{left:12px;width:180px}.wrap{width:calc(100% - 220px);margin-left:204px;margin-right:16px}}
+  @media(max-width:1179px) and (min-width:901px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 220px);margin-left:204px;margin-right:16px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:204px}}
+  @media(max-width:900px){.tutorial-sidebar{position:static;width:auto;max-height:none;margin:10px 11px 0;transform:none}.tutorial-sidebar-list{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{width:min(920px,100%);margin:auto}body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 36px);margin:0 auto}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:0}}
+  @media(max-width:640px){.tutorial-sidebar{margin:8px 11px 0;padding:11px;border-radius:14px}.tutorial-sidebar-list{grid-template-columns:1fr}.tutorial-sidebar-link{padding:8px 9px}.wrap{padding-top:4px}}
+  @media(max-width:540px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 22px)}}
+</style></head>
+<body data-mirror-route-nav-page=""><aside data-mirror-route-nav="" class="tutorial-sidebar" aria-label="教程导航"><div class="tutorial-sidebar-title">教程导航</div><nav class="tutorial-sidebar-list" aria-label="全部教程"><a class="tutorial-sidebar-link" href="../codex-login/">Codex 桌面版登录教程</a><a class="tutorial-sidebar-link" href="../icloud-login/">2FA格式卡密登录教程</a><a class="tutorial-sidebar-link" href="../icloud-pickup-login/">iCloud 邮箱取件链接登录教程</a><a class="tutorial-sidebar-link" href="../gptplus-password/">GPT Plus 修改密码教程</a><a class="tutorial-sidebar-link" href="../change-2fa/">GPT Plus 更换 2FA 教程</a><a class="tutorial-sidebar-link" href="../change-email/">ChatGPT 更改邮箱教程</a><a class="tutorial-sidebar-link" href="../2fa/">实时 2FA 验证码</a><a class="tutorial-sidebar-link active" href="../reverse-proxy-tutorial/" aria-current="page">Codex 反代与 Cockpit 教程</a></nav></aside>
+  <main class="reverse-proxy-tutorial">
+    <header class="tutorial-heading-band">
+      <div class="tutorial-heading">
+        <p class="tutorial-kicker">Codex / Cockpit</p>
+        <h1>反代教程</h1>
+        <p class="tutorial-summary">把 CPA 或 SUB2 格式的账号 JSON 转换为 Cockpit 格式，批量导入后使用单账号或 API 服务启动 Codex。</p>
+      </div>
+    </header>
+    <article class="tutorial-detail"><p>反代教程， 目前好多朋友想账密登录，我只能说你账密登录还得接码，麻烦，咱目前卡密网站激活兑换后，给你json格式的一个文件，json直接导入反代软件就能用，反代后使用codex，且导入比登录更加方便，故下面教大家如何反代</p><h2>1. 转换 JSON 格式</h2><p>开始教学之前我先说一下，每个软件的json格式都不一样，我卡网激活网站给大家下载的是cpa和sub2的格式，所以大家在使用cockpit的时候，先去这个网站 &nbsp; <a href="https://tinyurl.com/236l87uw" rel="noopener noreferrer" target="_blank">https://tinyurl.com/236l87uw</a> &nbsp; ，点击cockpit，点击选择文件【也是可以批量选择的】把你下载json文件批量导入进去，然后在上方选择你要转换成咱自己的反代软件格式即可【我这里教的是cockpit，我就选择cockpit】，转换后点击下载json即可，下载后，回到cockpit，把你的json文件批量导入进去即可</p><div class="tutorial-media" aria-label="教程截图"><img alt="PixPin_2026-08-21_16-29-39.jpg" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/0023b5026f35abe00ca550f8fb6232.jpg"></div><div class="tutorial-media" aria-label="教程截图"><img alt="PixPin_2026-08-28_11-26-42.jpg" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/dad38d9f2999421f0a65170fd37d99.jpg"></div><h2>2. 下载 Cockpit</h2><p><span><strong>下面是cockpit的下载和使用教程</strong></span>：先去<a href="https://github.com/jlcodes99/cockpit-tools/releases" rel="noopener noreferrer" target="_blank">https://github.com/jlcodes99/cockpit-tools/releases</a>这个网站下载反代软件，最好下新版，因为会实时更新很多功能，不知道下载什么<span><strong>别</strong></span>来问我，因为我也不知道，自己去网上搜</p><p>下载完成后是这样的</p><div class="tutorial-media" aria-label="教程截图"><img alt="PixPin_2026-08-28_11-28-35.jpg" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/6bcf66c95a1e858757b14bdeae71e8.jpg"></div><h2>3. 批量导入 Codex 账号</h2><p>然后找到左侧第四个按钮，为codex，点开后，点击蓝色＋号，点击导入，然后把你下载的json文件导入即可，是可以批量导入的</p><div class="tutorial-media tutorial-media-grid" aria-label="教程截图"><img alt="image.png" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/aba3a87d54474e70044de9365b88fc.png"><img alt="image.png" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/aa8d96eeca276182aa642b5fdeb03a.png"></div><h2>4. 设置启动路径并启动</h2><p>导入进去后就是这样的，想启动哪个账号就去点击启动按钮【启动前先去设置，找到codex的启动路径，选择一下，不知道在哪就点击默认自动选择】</p><div class="tutorial-media" aria-label="教程截图"><img alt="image.png" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/7522c970da559d44e390f135a8678f.png"></div><p>【如果你启动单个账号提示要登陆codex，那就是cockpit常见bug，把账号加入到api启动api服务即可解决，下面就是api服务教程】</p><h2>5. 配置 API 服务</h2><p>然后下面再给大家介绍一下api服务是什么，假如我们有100个账号的话，如果说我们不弄api服务，其中一个账号额度消耗完，我们只能关闭codex，回到cockpit重新切换另一个账号，十分的麻烦且影响效率，这时候api服务的作用就显现出来了，它可以把这100个账号的所有额度合到一块，这样其中一个账号额度消耗完毕自动切另一个号。下面教大家怎么使用api服务，如以下图1，点击图1红框为添加账号，到了图2，不要限制free账号的使用，然后点击全选，点击保存，然后回到图1，点击启动api就可以了。</p><div class="tutorial-media tutorial-media-grid" aria-label="教程截图"><img alt="image.png" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/21d544eb37211d62a36a02b6b2f1b2.png"><img alt="image.png" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/ca2a7025d81af39f75c0d60ac0ccec.png"></div><h2>6. 选择运行模式</h2><p>api服务上有一个标准和快速的按钮，你可以进行切换，就算你的账号全是free账号，有了这个按钮，你也可以使用plus的1.5倍速。</p><h2>使用注意事项</h2><p>再友情提示一次api服务和单个账号之间不要来回切换，就是你如果用账号你就用账号，嫌麻烦就用api服务，但是api服务不要老是切单独账号使用，会丢聊天记录，丢了聊天记录就点击会话管理，选择你要恢复的聊天记录线程【最好全选】，点击恢复可见性即可。但是你每次恢复可见性就代表的聊天记录会在%USERPROFILE%\.codex里重复下载一次，懂电脑的人会删除重复的，不懂电脑的人真会一不小心删掉全部聊天记录就再也找不回来了，所以不懂电脑的人如果用了api服务，就最好不要瞎切换</p><div class="tutorial-media" aria-label="教程截图"><img alt="image.png" loading="lazy" decoding="async" src="../reverse-proxy-tutorial/assets/e33aae46b6fb1fbc6131197fc60e90.png"></div></article>
+  </main>
+
+</body></html>

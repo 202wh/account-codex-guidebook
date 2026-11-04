@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><script src="../.mirror/sanitizer.js" data-mirror-runtime=""></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>GPT Plus 修改密码教程</title>
+  <meta name="description" content="GPT Plus 账号修改密码与 2FA 验证码操作教程">
+  <style>
+    :root{--card:#fff;--ink:#172033;--muted:#64748b;--line:#e4e9f1;--brand:#635bff;--brand2:#4a43d6;--green:#08a985;--warn:#fff7dc;--warn-border:#f2c94c;--danger:#b42318;--shadow:0 16px 44px rgba(31,43,68,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f0efff 0,#f4f7fb 360px);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.72}
+    a{color:inherit}.wrap{width:min(960px,100%);margin:auto;padding:18px 16px 118px}.hero{padding:34px 8px 18px;text-align:center}.badge{display:inline-flex;gap:7px;align-items:center;padding:7px 12px;border-radius:999px;background:#e9e7ff;color:#4f46d9;font-size:13px;font-weight:800}.hero h1{font-size:clamp(29px,6vw,44px);line-height:1.18;margin:15px 0 10px;letter-spacing:-.02em}.hero p{margin:0;color:var(--muted)}
+    .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid var(--line);background:#fff}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand2)}
+    .card{background:var(--card);border:1px solid rgba(219,226,236,.9);border-radius:20px;padding:22px;margin-top:16px;box-shadow:var(--shadow)}.card h2{font-size:22px;margin:0 0 12px;line-height:1.35}.card h3{font-size:18px;margin:18px 0 8px}.note{background:var(--warn);border:1px solid var(--warn-border);border-radius:14px;padding:15px 16px}.note strong{color:#9a6100}.danger{margin-top:12px;background:#fff1f0;border:1px solid #ffb4ad;color:var(--danger);border-radius:14px;padding:15px 16px;font-weight:850}.format{margin-top:13px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:13px;padding:14px 16px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#334155;overflow-wrap:anywhere}.video{display:block;width:100%;max-height:72vh;border:1px solid var(--line);border-radius:16px;background:#0f172a}.video-tip{margin:9px 2px 0;color:var(--muted);font-size:14px}
+    .steps{counter-reset:step}.step{position:relative;padding-left:52px;margin:28px 0 0}.step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:850}.step h3{padding-top:3px;margin-bottom:9px}.shot{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:15px;background:#fff;margin:12px 0 4px}.caption{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 0}.small{font-size:13px;color:var(--muted)}
+    .totp-intro{margin:12px 0;padding:14px 16px;border-radius:14px;background:#edf7ff;border:1px solid #9bd0ff}.totp-wrap{padding:18px;border:1px solid #a7ead9;background:#f1fcf8;border-radius:16px}.totp-row{display:grid;grid-template-columns:1fr auto;gap:12px}.totp-input{min-width:0;height:52px;padding:0 15px;border:2px solid #b7c5d8;border-radius:13px;font:inherit;font-size:16px}.totp-input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(8,169,133,.12)}.totp-btn{height:52px;padding:0 24px;border:0;border-radius:13px;background:var(--green);color:#fff;font:inherit;font-weight:850;cursor:pointer}.totp-result{display:none;text-align:center;margin-top:14px;padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff}.totp-code{font-size:clamp(34px,8vw,48px);letter-spacing:.22em;font-weight:900;color:#087f69;cursor:pointer}.totp-meta{color:var(--muted);font-size:14px}.totp-error{min-height:25px;color:var(--danger);font-weight:700;margin-top:6px}.secret-warning{font-size:18px;font-weight:900;color:var(--danger);margin:13px 0 0}.privacy{font-size:13px;color:var(--muted);margin-top:5px}
+    .tips{display:grid;gap:10px;margin-top:12px}.tip{padding:13px 14px;border-radius:12px;background:#f8fafc;border:1px solid var(--line)}.related{background:linear-gradient(135deg,#faf9ff,#eef8ff)}.related-links{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}.related-links a{text-decoration:none;padding:13px 14px;border-radius:12px;background:#fff;border:1px solid var(--line);font-weight:750;color:#4338ca}.footer{text-align:center;color:var(--muted);font-size:13px;margin-top:25px}
+    .visitor-widget{position:fixed;right:18px;bottom:18px;z-index:1000;min-width:238px;padding:13px 15px;border:1px solid rgba(255,255,255,.85);border-radius:17px;background:rgba(255,255,255,.92);box-shadow:0 14px 38px rgba(15,23,42,.18);backdrop-filter:blur(14px)}.visitor-title{display:flex;align-items:center;gap:7px;color:#475569;font-size:12px;font-weight:750;margin-bottom:8px}.online-dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.14)}.visitor-metrics{display:grid;grid-template-columns:1fr 1px 1fr;gap:12px;align-items:center}.visitor-line{height:31px;background:#e2e8f0}.visitor-metric span{display:block;color:#64748b;font-size:11px}.visitor-metric strong{display:block;color:#4f46d9;font-size:21px;line-height:1.2;margin-top:2px}.visitor-loading{opacity:.55}
+    @media(max-width:680px){.wrap{padding:10px 11px 112px}.hero{padding-top:25px}.card{padding:17px;border-radius:16px}.step{padding-left:43px}.step:before{width:32px;height:32px}.btn{width:100%}.totp-row{grid-template-columns:1fr}.totp-btn{width:100%}.related-links{grid-template-columns:1fr}.visitor-widget{right:11px;bottom:11px;min-width:218px;padding:11px 13px;border-radius:15px}.visitor-metric strong{font-size:19px}}
+  </style>
+<style data-mirror-route-style="">
+  .tutorial-sidebar{position:fixed;left:max(16px,calc((100vw - 920px) / 2 - 244px));top:50%;z-index:900;width:210px;max-height:calc(100vh - 32px);overflow:auto;transform:translateY(-50%);padding:14px;border:1px solid rgba(219,226,236,.95);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 16px 38px rgba(31,43,68,.14);backdrop-filter:blur(12px)}
+  .tutorial-sidebar-title{margin:0 2px 10px;color:#172033;font-size:14px;font-weight:800;line-height:1.35}
+  .tutorial-sidebar-list{display:grid;gap:7px}
+  .tutorial-sidebar-link{display:block;padding:9px 10px;border:1px solid transparent;border-radius:10px;color:#475569;font-size:13px;line-height:1.4;text-decoration:none;transition:background .16s ease,border-color .16s ease,color .16s ease}
+  .tutorial-sidebar-link:hover{border-color:#c7c3ff;background:#f3f2ff;color:#4338ca}
+  .tutorial-sidebar-link.active{border-color:#c7c3ff;background:#eceaff;color:#4338ca;font-weight:800}
+  @media(min-width:1180px){body[data-mirror-route-nav-page] main.wrap{width:min(920px,calc(100% - 278px));margin-left:max(253px,calc((100vw - 920px) / 2));margin-right:16px}body[data-mirror-route-nav-page] main.page-shell{width:min(1120px,calc(100% - 278px));margin-left:max(255px,calc((100vw - 1120px) / 2 + 95px));margin-right:18px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:238px}}
+  @media(max-width:1179px) and (min-width:901px){.tutorial-sidebar{left:12px;width:180px}.wrap{width:calc(100% - 220px);margin-left:204px;margin-right:16px}}
+  @media(max-width:1179px) and (min-width:901px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 220px);margin-left:204px;margin-right:16px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:204px}}
+  @media(max-width:900px){.tutorial-sidebar{position:static;width:auto;max-height:none;margin:10px 11px 0;transform:none}.tutorial-sidebar-list{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{width:min(920px,100%);margin:auto}body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 36px);margin:0 auto}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:0}}
+  @media(max-width:640px){.tutorial-sidebar{margin:8px 11px 0;padding:11px;border-radius:14px}.tutorial-sidebar-list{grid-template-columns:1fr}.tutorial-sidebar-link{padding:8px 9px}.wrap{padding-top:4px}}
+  @media(max-width:540px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 22px)}}
+</style></head>
+<body data-mirror-route-nav-page=""><aside data-mirror-route-nav="" class="tutorial-sidebar" aria-label="教程导航"><div class="tutorial-sidebar-title">教程导航</div><nav class="tutorial-sidebar-list" aria-label="全部教程"><a class="tutorial-sidebar-link" href="../codex-login/">Codex 桌面版登录教程</a><a class="tutorial-sidebar-link" href="../icloud-login/">2FA格式卡密登录教程</a><a class="tutorial-sidebar-link" href="../icloud-pickup-login/">iCloud 邮箱取件链接登录教程</a><a class="tutorial-sidebar-link active" href="../gptplus-password/" aria-current="page">GPT Plus 修改密码教程</a><a class="tutorial-sidebar-link" href="../change-2fa/">GPT Plus 更换 2FA 教程</a><a class="tutorial-sidebar-link" href="../change-email/">ChatGPT 更改邮箱教程</a><a class="tutorial-sidebar-link" href="../2fa/">实时 2FA 验证码</a><a class="tutorial-sidebar-link" href="../reverse-proxy-tutorial/">Codex 反代与 Cockpit 教程</a></nav></aside>
+  <main class="wrap">
+    <header class="hero">
+      <span class="badge">🔐 账号安全说明</span>
+      <h1>GPT Plus 修改密码教程</h1>
+      <p>按照下面步骤修改登录密码，并使用订单提供的 2FA 密钥完成身份验证</p>
+      <div class="actions">
+        <a class="btn primary" href="https://chatgpt.com/" target="_blank" rel="noopener">打开 ChatGPT</a>
+        <a class="btn" href="#video">观看视频教程</a>
+        <a class="btn" href="#steps">查看操作步骤</a>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>开始前先看</h2>
+      <div class="note"><strong>发货信息通常包含：</strong><br>账号邮箱、当前登录密码和 2FA 密钥。请以自己的订单卡密内容为准。</div>
+      <div class="format">账号邮箱 --- 当前密码 --- 2FA：YOUR_2FA_SECRET</div>
+      <div class="danger">重要：不要关闭 Authenticator app / 2FA。关闭后可能导致账号再次登录时缺少验证方式。</div>
+    </section>
+
+    <section class="card" id="video">
+      <h2>视频教程</h2>
+      <video class="video" controls="" playsinline="" preload="metadata" data-mirror-media-allowed="">
+        <source src="assets/password-change-video.mp4" type="video/mp4">
+        当前浏览器不支持播放此视频，请使用下方链接下载观看。
+      </video>
+      <p class="video-tip">视频时长约 1 分钟。若在线播放不流畅，可<a href="assets/password-change-video.mp4" download="">点击下载视频</a>后观看。</p>
+    </section>
+
+    <section class="card steps" id="steps">
+      <h2>修改密码操作步骤</h2>
+      <article class="step">
+        <h3>登录后打开“设置”</h3>
+        <p>进入 ChatGPT，点击左下角头像或账号名称，在弹出的菜单中选择“设置”。</p>
+        <img class="shot" src="assets/step-1-settings.png" alt="在 ChatGPT 账号菜单中打开设置" loading="lazy">
+        <p class="caption">图 1：打开 ChatGPT 设置</p>
+      </article>
+      <article class="step">
+        <h3>选择“账号安全与登录”</h3>
+        <p>在设置页面左侧找到“账号安全与登录”，进入密码和多因素身份验证管理页面。</p>
+        <img class="shot" src="assets/step-2-security.png" alt="ChatGPT 账号安全与登录页面" loading="lazy">
+        <p class="caption">图 2：进入账号安全与登录</p>
+      </article>
+      <article class="step">
+        <h3>点击“密码”</h3>
+        <p>在页面顶部找到“密码”一栏，点击右侧箭头进入修改流程。</p>
+        <img class="shot" src="assets/step-3-password.png" alt="点击 ChatGPT 密码设置" loading="lazy">
+        <p class="caption">图 3：进入密码修改</p>
+      </article>
+      <article class="step">
+        <h3>输入订单提供的当前密码</h3>
+        <p>页面要求验证身份时，填写订单卡密中的当前登录密码，然后点击“继续”。</p>
+        <img class="shot" src="assets/step-4-guide.png" alt="输入当前密码验证身份" loading="lazy">
+        <p class="caption">图 4：使用当前密码验证本人</p>
+      </article>
+      <article class="step">
+        <h3>设置并保存自己的新密码</h3>
+        <p>分别输入两次新密码并继续。新密码应使用自己能长期保存的强密码，不要与其他网站共用。</p>
+        <div class="danger">新密码必须重点保存。密码丢失后可能导致账号无法再次登录；改密码以后因忘记新密码导致无法登录，不在售后范围内。</div>
+        <img class="shot" src="assets/step-5-guide.png" alt="输入并确认新的 ChatGPT 密码" loading="lazy">
+        <p class="caption">图 5：输入两次新密码</p>
+      </article>
+      <article class="step">
+        <h3>使用 2FA 密钥获取六位验证码</h3>
+        <p>如果页面要求一次性验证码，把订单提供的 2FA 密钥粘贴到下方生成器，点击“生成验证码”，再把当前六位数字填入 ChatGPT。</p>
+        <div class="totp-intro"><strong>也可以打开：</strong> <a href="../2fa/" target="_blank" rel="noopener noreferrer">2FA</a><br><span class="small">验证码会定时失效，超过剩余时间后请重新获取。</span></div>
+        <img class="shot" src="assets/step-6-guide.png" alt="在 2FA 网站获取六位验证码" loading="lazy">
+        <p class="caption">图 6：粘贴 2FA 密钥并获取验证码</p>
+        <h3>直接在本页生成六位验证码</h3>
+        <div class="totp-wrap">
+          <div class="totp-row">
+            <input class="totp-input" id="totpSecret" type="text" autocomplete="off" spellcheck="false" placeholder="粘贴订单提供的 2FA 密钥">
+            <button class="totp-btn" type="button" onclick="startTotp()">生成验证码</button>
+          </div>
+          <div class="totp-error" id="totpError"></div>
+          <div class="totp-result" id="totpResult">
+            <div class="totp-code" id="totpCode" title="点击复制">000000</div>
+            <div class="totp-meta">约 <span id="totpSeconds">30</span> 秒后刷新 · 点击验证码即可复制</div>
+          </div>
+        </div>
+        <p class="secret-warning">密钥必须重点保存，密钥丢失以后可能导致无法登录。</p>
+        <p class="privacy">密钥只在当前浏览器中计算，不会上传到服务器。</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>注意事项</h2>
+      <div class="tips">
+        <div class="tip"><strong>保留 2FA：</strong>修改密码不等于关闭 2FA，请保持 Authenticator app 验证开启。</div>
+        <div class="tip"><strong>保存完整信息：</strong>新密码和 2FA 密钥应分别备份到自己的安全位置。</div>
+        <div class="tip"><strong>遇到验证码失效：</strong>等待下一组六位数字刷新后重新填写，并检查设备时间是否自动同步。</div>
+      </div>
+    </section>
+
+    
+
+    <footer class="footer">最后整理：2026-08-02</footer>
+  </main>
+  
+  <script>
+    let totpTimer;
+    function base32Bytes(value){
+      const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+      const clean=value.toUpperCase().replace(/^2FA\s*[:：]?\s*/,'').replace(/[^A-Z2-7]/g,'');
+      if(!clean || clean.length<8) throw new Error('请粘贴订单中的 2FA 密钥');
+      let bits='',out=[];
+      for(const c of clean){const n=alphabet.indexOf(c);if(n<0)throw new Error('2FA 密钥格式不正确');bits+=n.toString(2).padStart(5,'0')}
+      for(let i=0;i+8<=bits.length;i+=8)out.push(parseInt(bits.slice(i,i+8),2));
+      return new Uint8Array(out);
+    }
+    async function refreshTotp(){
+      try{
+        const secret=base32Bytes(document.getElementById('totpSecret').value);
+        const counter=Math.floor(Date.now()/1000/30);
+        const msg=new Uint8Array(8);let n=BigInt(counter);
+        for(let i=7;i>=0;i--){msg[i]=Number(n&255n);n>>=8n}
+        const key=await crypto.subtle.importKey('raw',secret,{name:'HMAC',hash:'SHA-1'},false,['sign']);
+        const sig=new Uint8Array(await crypto.subtle.sign('HMAC',key,msg));
+        const offset=sig[sig.length-1]&15;
+        const value=(((sig[offset]&127)<<24)|((sig[offset+1]&255)<<16)|((sig[offset+2]&255)<<8)|(sig[offset+3]&255))%1000000;
+        document.getElementById('totpCode').textContent=String(value).padStart(6,'0');
+        document.getElementById('totpSeconds').textContent=30-(Math.floor(Date.now()/1000)%30);
+        document.getElementById('totpResult').style.display='block';
+        document.getElementById('totpError').textContent='';
+      }catch(e){document.getElementById('totpError').textContent=e.message;document.getElementById('totpResult').style.display='none'}
+    }
+    function startTotp(){clearInterval(totpTimer);refreshTotp();totpTimer=setInterval(refreshTotp,1000)}
+    document.getElementById('totpCode').addEventListener('click',async()=>{
+      const code=document.getElementById('totpCode').textContent;
+      if(/^\d{6}$/.test(code)){await navigator.clipboard.writeText(code);document.getElementById('totpCode').textContent='已复制';setTimeout(refreshTotp,700)}
+    });
+</script>
+
+
+</body></html>

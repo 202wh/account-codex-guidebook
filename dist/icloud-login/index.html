@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="zh-CN"><head><script src="../.mirror/sanitizer.js" data-mirror-runtime=""></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>2FA格式卡密登录教程</title>
+  <meta name="description" content="2FA格式卡密登录教程">
+  <style>
+    :root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#64748b;--line:#e5eaf1;--brand:#10a37f;--brand2:#087f68;--warn:#fff7dc;--warn-border:#f2c94c;--shadow:0 16px 44px rgba(31,43,68,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#eefaf6 0,#f4f7fb 320px);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.72}
+    a{color:inherit}.wrap{width:min(920px,100%);margin:auto;padding:18px 16px 70px}.hero{padding:34px 8px 18px;text-align:center}.badge{display:inline-flex;gap:7px;align-items:center;padding:7px 12px;border-radius:999px;background:#dcf7ee;color:#06775d;font-size:13px;font-weight:750}.hero h1{font-size:clamp(27px,6vw,42px);line-height:1.18;margin:15px 0 10px;letter-spacing:-.02em}.hero p{margin:0;color:var(--muted)}
+    .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:12px;text-decoration:none;font-weight:750;border:1px solid var(--line);background:#fff}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand2)}
+    .card{background:var(--card);border:1px solid rgba(219,226,236,.9);border-radius:20px;padding:22px;margin-top:16px;box-shadow:var(--shadow)}.card h2{font-size:21px;margin:0 0 12px;line-height:1.35}.card h3{font-size:17px;margin:18px 0 8px}.video{display:block;width:100%;max-height:620px;border-radius:15px;background:#0f172a}.note{background:var(--warn);border:1px solid var(--warn-border);border-radius:14px;padding:15px 16px}.note strong{color:#9a6100}.format{position:relative;background:#111827;color:#f8fafc;border-radius:13px;padding:15px 48px 15px 15px;font:14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;word-break:break-all}.copy{position:absolute;right:8px;top:8px;border:0;border-radius:8px;padding:7px 9px;background:#334155;color:#fff;cursor:pointer}
+    .totp-box{background:#f0fdf8;border:1px solid #a7ead6;border-radius:15px;padding:20px}.totp-row{display:flex;gap:12px;align-items:stretch}.totp-input{min-width:0;min-height:58px;flex:1;border:2px solid #aebdcb;border-radius:13px;padding:0 18px;font:17px ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase}.totp-input:focus{outline:3px solid rgba(16,163,127,.16);border-color:var(--brand)}.totp-btn{min-width:160px;min-height:58px;border:0;border-radius:13px;background:var(--brand);color:#fff;padding:0 22px;font-size:17px;font-weight:750;cursor:pointer}.totp-result{display:none;margin-top:16px;padding:18px;border-radius:12px;background:#fff;border:1px solid var(--line);text-align:center}.totp-code{font:800 38px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:8px;color:#087f68}.totp-meta{font-size:14px;color:var(--muted);margin-top:7px}.error{color:#b42318;font-size:13px;margin-top:9px}
+    .twofa-link{display:block;margin:15px 0;padding:15px 16px;border-radius:14px;background:#eef7ff;border:1px solid #9bcdf4;text-decoration:none}.twofa-link strong{display:block;color:#075985;margin-bottom:4px}.twofa-link span{color:#0369a1;font-weight:750;word-break:break-all}.twofa-link em{display:block;margin-top:7px;color:#b45309;font-style:normal;font-size:14px}
+    .steps{counter-reset:step}.step{position:relative;padding-left:51px;margin:20px 0 0}.step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:800}.step h3{padding-top:3px;margin-bottom:9px}.shot{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:15px;background:#fff;margin:12px 0 4px}.caption{font-size:13px;color:var(--muted);text-align:center;margin:5px 0 0}.small{font-size:13px;color:var(--muted)}
+    .toc{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.toc a{text-decoration:none;text-align:center;background:#f7fafc;border:1px solid var(--line);border-radius:11px;padding:10px;font-size:14px;font-weight:650}.footer{text-align:center;color:var(--muted);font-size:13px;margin-top:25px}.footer a{color:#087f68}
+    .next-guide{position:relative;overflow:hidden;background:linear-gradient(135deg,#faf9ff 0%,#eef8ff 100%);border-color:#dcd8ff}.next-guide:after{content:"";position:absolute;right:-45px;top:-55px;width:150px;height:150px;border-radius:50%;background:rgba(99,91,255,.09)}.next-guide>*{position:relative;z-index:1}.next-label{display:inline-flex;padding:5px 10px;border-radius:999px;background:#e9e7ff;color:#4f46d9;font-size:12px;font-weight:800;margin-bottom:10px}.next-guide p{color:var(--muted);margin:0 0 15px}.btn.codex{background:#635bff;border-color:#635bff;color:#fff}.btn.codex:hover{background:#4a43d6}
+    .visitor-widget{position:fixed;right:18px;bottom:18px;z-index:1000;min-width:238px;padding:13px 15px;border:1px solid rgba(255,255,255,.85);border-radius:17px;background:rgba(255,255,255,.92);box-shadow:0 14px 38px rgba(15,23,42,.18);backdrop-filter:blur(14px)}.visitor-title{display:flex;align-items:center;gap:7px;color:#475569;font-size:12px;font-weight:750;margin-bottom:8px}.online-dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.14)}.visitor-metrics{display:grid;grid-template-columns:1fr 1px 1fr;gap:12px;align-items:center}.visitor-line{height:31px;background:#e2e8f0}.visitor-metric span{display:block;color:#64748b;font-size:11px}.visitor-metric strong{display:block;color:#0f766e;font-size:21px;line-height:1.2;margin-top:2px}.visitor-loading{opacity:.55}
+    @media(max-width:640px){.wrap{padding:10px 11px 110px}.hero{padding-top:25px}.card{padding:17px;border-radius:16px}.toc{grid-template-columns:1fr}.step{padding-left:43px}.step:before{width:32px;height:32px}.btn{width:100%}.totp-box{padding:15px}.totp-row{flex-direction:column}.totp-input,.totp-btn{width:100%;min-height:54px}.totp-code{font-size:32px;letter-spacing:6px}.visitor-widget{right:11px;bottom:11px;min-width:218px;padding:11px 13px;border-radius:15px}.visitor-metric strong{font-size:19px}}
+  </style>
+<style data-mirror-route-style="">
+  .tutorial-sidebar{position:fixed;left:max(16px,calc((100vw - 920px) / 2 - 244px));top:50%;z-index:900;width:210px;max-height:calc(100vh - 32px);overflow:auto;transform:translateY(-50%);padding:14px;border:1px solid rgba(219,226,236,.95);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 16px 38px rgba(31,43,68,.14);backdrop-filter:blur(12px)}
+  .tutorial-sidebar-title{margin:0 2px 10px;color:#172033;font-size:14px;font-weight:800;line-height:1.35}
+  .tutorial-sidebar-list{display:grid;gap:7px}
+  .tutorial-sidebar-link{display:block;padding:9px 10px;border:1px solid transparent;border-radius:10px;color:#475569;font-size:13px;line-height:1.4;text-decoration:none;transition:background .16s ease,border-color .16s ease,color .16s ease}
+  .tutorial-sidebar-link:hover{border-color:#c7c3ff;background:#f3f2ff;color:#4338ca}
+  .tutorial-sidebar-link.active{border-color:#c7c3ff;background:#eceaff;color:#4338ca;font-weight:800}
+  @media(min-width:1180px){body[data-mirror-route-nav-page] main.wrap{width:min(920px,calc(100% - 278px));margin-left:max(253px,calc((100vw - 920px) / 2));margin-right:16px}body[data-mirror-route-nav-page] main.page-shell{width:min(1120px,calc(100% - 278px));margin-left:max(255px,calc((100vw - 1120px) / 2 + 95px));margin-right:18px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:238px}}
+  @media(max-width:1179px) and (min-width:901px){.tutorial-sidebar{left:12px;width:180px}.wrap{width:calc(100% - 220px);margin-left:204px;margin-right:16px}}
+  @media(max-width:1179px) and (min-width:901px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 220px);margin-left:204px;margin-right:16px}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:204px}}
+  @media(max-width:900px){.tutorial-sidebar{position:static;width:auto;max-height:none;margin:10px 11px 0;transform:none}.tutorial-sidebar-list{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{width:min(920px,100%);margin:auto}body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 36px);margin:0 auto}body[data-mirror-route-nav-page] main.reverse-proxy-tutorial{padding-left:0}}
+  @media(max-width:640px){.tutorial-sidebar{margin:8px 11px 0;padding:11px;border-radius:14px}.tutorial-sidebar-list{grid-template-columns:1fr}.tutorial-sidebar-link{padding:8px 9px}.wrap{padding-top:4px}}
+  @media(max-width:540px){body[data-mirror-route-nav-page] main.page-shell{width:calc(100% - 22px)}}
+</style></head>
+<body data-mirror-route-nav-page=""><aside data-mirror-route-nav="" class="tutorial-sidebar" aria-label="教程导航"><div class="tutorial-sidebar-title">教程导航</div><nav class="tutorial-sidebar-list" aria-label="全部教程"><a class="tutorial-sidebar-link" href="../codex-login/">Codex 桌面版登录教程</a><a class="tutorial-sidebar-link active" href="../icloud-login/" aria-current="page">2FA格式卡密登录教程</a><a class="tutorial-sidebar-link" href="../icloud-pickup-login/">iCloud 邮箱取件链接登录教程</a><a class="tutorial-sidebar-link" href="../gptplus-password/">GPT Plus 修改密码教程</a><a class="tutorial-sidebar-link" href="../change-2fa/">GPT Plus 更换 2FA 教程</a><a class="tutorial-sidebar-link" href="../change-email/">ChatGPT 更改邮箱教程</a><a class="tutorial-sidebar-link" href="../2fa/">实时 2FA 验证码</a><a class="tutorial-sidebar-link" href="../reverse-proxy-tutorial/">Codex 反代与 Cockpit 教程</a></nav></aside>
+  <main class="wrap">
+    <header class="hero">
+      <span class="badge">✉️ 登录说明</span>
+      <h1>2FA格式卡密登录教程</h1>
+      <p>按发货信息依次填写邮箱、密码与 2FA 验证码</p>
+      <div class="actions">
+        <a class="btn primary" href="https://chatgpt.com/" target="_blank" rel="noopener">打开 ChatGPT 官网</a>
+        <a class="btn" href="#steps">查看图文步骤</a>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>视频登录教程</h2>
+      <video class="video" controls="" playsinline="" preload="metadata" poster="assets/step-01.png" data-mirror-media-allowed="">
+        <source src="assets/login-video.mp4" type="video/mp4">
+      </video>
+      <p class="small">点击播放，完整演示邮箱、密码和 2FA 验证码的登录过程。</p>
+    </section>
+
+    <section class="card">
+      <h2>先看发货格式</h2>
+      <p>收到的卡密通常按以下顺序排列，实际内容以你的订单为准：</p>
+      <div class="format" id="formatText">邮箱账号---登录密码---2FA：验证码密钥<button class="copy" type="button" onclick="copyFormat()">复制</button></div>
+      <p class="small">示例只用于说明字段顺序，请填写订单中收到的真实信息。</p>
+      <div class="note">
+        <strong>注意事项</strong><br>
+        ① 仅使用“邮箱地址”方式登录。<br>
+        ② 登录成功后先正常使用，避免立刻频繁修改资料。<br>
+        ③ 保留订单中的 2FA 信息，后续登录可能继续需要。
+      </div>
+      <nav class="toc">
+        <a href="#email">1. 输入邮箱</a>
+        <a href="#password">2. 输入密码</a>
+        <a href="#twofa">3. 输入 2FA</a>
+      </nav>
+    </section>
+
+    <section class="card steps" id="steps">
+      <h2>图文登录步骤</h2>
+      <article class="step" id="email">
+        <h3>打开官网，使用邮箱继续</h3>
+        <p>进入 ChatGPT 登录页，在邮箱输入框填写订单里的邮箱账号，然后点“继续”。</p>
+        <img class="shot" src="assets/step-01.png" alt="在 ChatGPT 登录页输入邮箱并继续" loading="lazy">
+        <p class="caption">图 1：选择邮箱登录并填写账号</p>
+      </article>
+      <article class="step" id="password">
+        <h3>填写订单中的登录密码</h3>
+        <p>确认页面显示的邮箱正确，再填写订单里的密码，然后点“继续”。</p>
+        <img class="shot" src="assets/step-02.png" alt="输入登录密码" loading="lazy">
+        <p class="caption">图 2：输入密码</p>
+      </article>
+      <article class="step" id="twofa">
+        <h3>填写一次性 2FA 验证码</h3>
+        <p>页面要求验证身份时，使用订单提供的 2FA 密钥生成当前六位验证码，填入后继续。</p>
+        <img class="shot" src="assets/step-03.png" alt="输入一次性 2FA 验证码" loading="lazy">
+        <p class="caption">图 3：输入当前一次性验证码</p>
+        <h3>2FA 验证码获取方法</h3>
+        <p><strong>2FA 密钥就在订单发给你的卡密中。</strong>找到 <code>2fa：</code> 后面的一串英文字母和数字，它是验证码密钥，不是最终的六位验证码。</p>
+        <div class="format">邮箱账号---登录密码---2fa：<strong>UEBBM5JY2HN53E6NAUZSA</strong></div>
+        <a class="twofa-link" href="../2fa/" target="_blank" rel="noopener noreferrer">
+          <strong>复制并打开网站前往获取 2FA 验证码：</strong>
+          <span>/2fa</span>
+          <em>注意验证码失效，超过剩余时间请重新获取。</em>
+        </a>
+        <h3>直接在本页生成六位验证码</h3>
+        <div class="totp-box">
+          <div class="totp-row">
+            <input class="totp-input" id="totpSecret" type="text" inputmode="text" autocomplete="off" placeholder="粘贴 2fa：后面的密钥">
+            <button class="totp-btn" type="button" onclick="startTotp()">生成验证码</button>
+          </div>
+          <div class="error" id="totpError"></div>
+          <div class="totp-result" id="totpResult">
+            <div class="totp-code" id="totpCode">------</div>
+            <div class="totp-meta">约 <span id="totpSeconds">30</span> 秒后刷新 · 点击验证码即可复制</div>
+          </div>
+        </div>
+        <p class="small">密钥只在当前浏览器中计算，不会上传到服务器。也可以把同一密钥添加到 Google Authenticator、Microsoft Authenticator 或 2FAS，类型选择“基于时间”。</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>常见问题</h2>
+      <h3>页面提示验证码错误</h3>
+      <p>检查手机时间是否为自动同步，再生成一组新的六位验证码；验证码临近刷新时，等下一组出现后再填写。</p>
+      <h3>页面要求选择其他验证方式</h3>
+      <p>优先返回一次性验证码输入页，按订单里的 2FA 信息操作。仍有问题时，把订单号和提示页面截图发给客服。</p>
+    </section>
+
+    
+
+    
+
+    
+
+    <footer class="footer">最后整理：2026-07-22</footer>
+  </main>
+  
+  <script>
+    async function copyFormat(){
+      const text='邮箱账号---登录密码---2FA：验证码密钥';
+      try{await navigator.clipboard.writeText(text);document.querySelector('.copy').textContent='已复制'}
+      catch(e){document.querySelector('.copy').textContent='请长按复制'}
+    }
+    let totpTimer;
+    function base32Bytes(value){
+      const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+      const clean=value.toUpperCase().replace(/^2FA\s*[:：]?\s*/,'').replace(/[^A-Z2-7]/g,'');
+      if(!clean || clean.length<8) throw new Error('请粘贴卡密里 2fa：后面的完整密钥');
+      let bits='',out=[];
+      for(const c of clean){const n=alphabet.indexOf(c);if(n<0)throw new Error('2FA 密钥格式有误');bits+=n.toString(2).padStart(5,'0')}
+      for(let i=0;i+8<=bits.length;i+=8)out.push(parseInt(bits.slice(i,i+8),2));
+      return new Uint8Array(out);
+    }
+    async function refreshTotp(){
+      try{
+        const secret=base32Bytes(document.getElementById('totpSecret').value);
+        const counter=Math.floor(Date.now()/1000/30);
+        const msg=new Uint8Array(8);let n=BigInt(counter);
+        for(let i=7;i>=0;i--){msg[i]=Number(n&255n);n>>=8n}
+        const key=await crypto.subtle.importKey('raw',secret,{name:'HMAC',hash:'SHA-1'},false,['sign']);
+        const sig=new Uint8Array(await crypto.subtle.sign('HMAC',key,msg));
+        const offset=sig[sig.length-1]&15;
+        const value=(((sig[offset]&127)<<24)|((sig[offset+1]&255)<<16)|((sig[offset+2]&255)<<8)|(sig[offset+3]&255))%1000000;
+        document.getElementById('totpCode').textContent=String(value).padStart(6,'0');
+        document.getElementById('totpSeconds').textContent=30-(Math.floor(Date.now()/1000)%30);
+        document.getElementById('totpResult').style.display='block';
+        document.getElementById('totpError').textContent='';
+      }catch(e){document.getElementById('totpError').textContent=e.message;document.getElementById('totpResult').style.display='none'}
+    }
+    function startTotp(){clearInterval(totpTimer);refreshTotp();totpTimer=setInterval(refreshTotp,1000)}
+    document.getElementById('totpCode').addEventListener('click',async()=>{
+      const code=document.getElementById('totpCode').textContent;
+      if(/^\d{6}$/.test(code)){await navigator.clipboard.writeText(code);document.getElementById('totpCode').textContent='已复制';setTimeout(refreshTotp,700)}
+    });
+</script>
+
+
+</body></html>
