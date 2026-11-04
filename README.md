@@ -12,6 +12,10 @@ python -m http.server 8000 --directory dist
 
 然后打开 `http://localhost:8000/`。也可以将 `dist/` 发布到任何静态网站托管服务。搜索和筛选在浏览器本地执行；本项目没有账号、密钥或验证码输入功能。
 
+## 在线访问
+
+公开版本通过 [GitHub Pages](https://202wh.github.io/account-codex-guidebook/) 部署，根目录入口会跳转至 `dist/`。向 `main` 分支推送修改后，GitHub Pages 会自动更新。
+
 ## 修改内容
 
 教程资料保存在 `dist/guides.js`，每条包括标题、分类、摘要、步骤、提示及原始来源。页面功能在 `dist/app.js`，样式在 `dist/style.css`。
